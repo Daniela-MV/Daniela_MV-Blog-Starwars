@@ -1,23 +1,66 @@
-
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
+import CardsPersonajes from "../components/CardsPersonajes.jsx";
+import React, {useEffect} from "react";
+
 
 export const Home = () => {
 
 	const { store, dispatch } = useGlobalReducer()
 
+	function cartasPersonajes(){
+    fetch("https://www.swapi.tech/api/people/")
+        .then(response => response.json())
+        .then(async (data) => {
+            // Hacemos fetch a cada URL para obtener detalles completos
+            const personajesDetalles = await Promise.all(
+                data.results.map(personaje =>
+                    fetch(personaje.url)
+                        .then(res => res.json())
+                        .then(data => data.result.properties)
+                )
+            );
+
+            dispatch({
+                type: "set_personajes",
+                payload: { personaje: personajesDetalles }
+            });
+        })
+        .catch(err => console.error(err));
+}
+
+	// 	fetch("https://www.swapi.tech/api/people/")
+	// 	.then (response=>response.json())
+	// 	.then((data) => {
+    //        const personajesDetalles = await Promise.all(
+    //             data.results.map(personaje =>
+    //                 fetch(personaje.url)
+    //                     .then(res => res.json())
+    //                     .then(data => data.result.properties)
+	// 			)
+	// 	dispatch({
+	// 		type: "set_personajes",
+	// 		payload: {personaje:data.results}
+	// 	});
+	// })
+	// 	.catch(err => console.error(err))
+	// }
+
+	useEffect(()=>{
+		cartasPersonajes()
+	}, [])
+
 	return (
-		<div className="carta m-5">
-			<div className="card" style={{backgroundColor:"rgba(247,201,62)", width:"18rem"}}>
-				<img src="https://www.uv.es/loferma2/images/wi.jpg" className="card-img-top" alt="" style={{height:"300px"}}/>
-					<div className="card-body">
-						<h5 className="card-title">Card title</h5>
-						<p className="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-						<div className= "d-flex justify-content-between">
-						<button type="button" className="btn btn-dark">Learn More</button>
-						<button type="button" className="btn btn-dark"><i className="bi bi-heart" style={{color:"yellow"}} ></i></button>
-						</div>
-					</div>
+		<div className="carta m-2">
+			<h1 className="título ms-5" style={{color: "rgba(255, 219, 88, 1)"}}>PERSONAJES</h1>
+			
+			<div className="d-flex ">
+				{store.character.map((value,index)=> {
+					return(
+                        <CardsPersonajes key={index} people={value} />
+					)
+				})}
 			</div>
+		
 		</div>
 	);
 }; 
