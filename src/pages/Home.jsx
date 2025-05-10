@@ -1,6 +1,7 @@
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import CardsPersonajes from "../components/CardsPersonajes.jsx";
 import Planets from "../components/Planets.jsx";
+import Vehicles from "../components/Vehicles.jsx";
 import React, {useEffect} from "react";
 
 
@@ -47,10 +48,30 @@ function cartasPlanetas(){
         .catch(err => console.error(err));
 }
 
+function cartasVehiculos(){
+    fetch("https://www.swapi.tech/api/vehicles/")
+        .then(response => response.json())
+        .then(async (data) => {
+            const vehiculosDetalles = await Promise.all(
+                data.results.map(vehiculoStar =>
+                    fetch(vehiculoStar.url)
+                        .then(res => res.json())
+                        .then(data => data.result.properties)
+                )
+            );
+            dispatch({
+                type: "set_vehicles",
+                payload: { vehiculos: vehiculosDetalles }
+            });
+        })
+        .catch(err => console.error(err));
+}
+
 
 	useEffect(()=>{
 		cartasPersonajes(),
-		cartasPlanetas()
+		cartasPlanetas(),
+        cartasVehiculos()
 	}, [])
 
 	return (
@@ -68,7 +89,7 @@ function cartasPlanetas(){
 			</div>	
         </div>
 		    
-		<div>
+		<div className="planetasStar">
 				<h1 className="título ms-5" style={{color: "rgba(255, 219, 88, 1)"}}>PLANETAS</h1>
 				<div className="d-flex ">
 				{store.planets.map((value,index)=> {
@@ -80,6 +101,19 @@ function cartasPlanetas(){
 			    </div>
 			
 		</div>
+
+         <div className="vehiculos m-2">
+			<h1 className="título ms-5" style={{color: "rgba(255, 219, 88, 1)"}}>VEHÍCULOS</h1>
+			
+			<div className="d-flex ">
+				{store.vehicles.map((value,index)=> {
+					return(
+                        <Vehicles key={index} vehiculo={value} />
+						
+					)
+				})}
+			</div>	
+        </div> 
 		</div>
 	);
 }; 
