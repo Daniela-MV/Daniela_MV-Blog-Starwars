@@ -1,5 +1,11 @@
+import { useNavigate } from "react-router-dom";
+import useGlobalReducer from "../hooks/useGlobalReducer";
 
 const CardsPersonajes=({people})=> {
+
+	const navigate=useNavigate()
+	const {store, dispatch}=useGlobalReducer()
+
     return(
 <div className="carta m-5">
     <div className="card" style={{backgroundColor:"white", width:"18rem"}}>
@@ -14,7 +20,7 @@ const CardsPersonajes=({people})=> {
 							</ul>
 						</p>
 						<div className= "d-flex justify-content-between">
-						<button type="button" className="btn btn-dark">Learn More</button>
+						<button type="button" className="btn btn-dark" onClick={()=>{navigate(`descripción/personaje/${people.uid}`)}}>Descripción</button>
 						<button type="button" className="btn btn-dark"><i className="bi bi-heart" style={{color:"yellow"}} ></i></button>
 						</div>
 					</div>
