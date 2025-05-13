@@ -20,7 +20,7 @@ const CardsPersonajes=({people})=> {
 							</ul>
 						</p>
 						<div className= "d-flex justify-content-between">
-						<button type="button" className="btn btn-dark" onClick={()=>{navigate(`descripción/personaje/${people.uid}`)}}>Descripción</button>
+						<button type="button" className="btn btn-dark" onClick={()=>{navigate(`descripción/personaje/${people.name}`)}}>Descripción</button>
 						<button type="button" className="btn btn-dark"><i className="bi bi-heart" style={{color:"yellow"}} ></i></button>
 						</div>
 					</div>
