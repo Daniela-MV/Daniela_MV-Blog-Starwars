@@ -34,10 +34,23 @@ export default function storeReducer(store, action = {}) {
         ...store, vehicles:vehiculos
       }
       case "newFavorite":
-        const addFavorite=action.payload
-      return{
-        ...store,favorites:addFavorite 
+      const addFavorite = action.payload;
+
+      // Si ya existe, no lo agregamos otra vez
+      if (store.favorites.includes(addFavorite)) {
+        return store;
       }
+
+      return {
+        ...store,
+        favorites: [...store.favorites, addFavorite]
+      };
+
+    case "removeFavorite":
+      return {
+        ...store,
+        favorites: store.favorites.filter(fav => fav !== action.payload)
+      };
 
 
     default:
