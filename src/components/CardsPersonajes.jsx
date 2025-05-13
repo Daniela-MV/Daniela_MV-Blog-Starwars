@@ -6,6 +6,23 @@ const CardsPersonajes=({people})=> {
 	const navigate=useNavigate()
 	const {store, dispatch}=useGlobalReducer()
 
+	const isFavorite = store.favorites?.includes(people.name)
+	const favorite=()=>{
+		if (isFavorite === true){
+			const action={
+				type: "removeFavorite",
+				payload: people.name
+			}
+			dispatch(action)
+		} else{
+			const action={
+				type: "newFavorite",
+				payload: people.name
+			}
+			dispatch(action)
+		}
+	}
+
     return(
 <div className="carta m-5">
     <div className="card" style={{backgroundColor:"white", width:"18rem"}}>
@@ -21,7 +38,7 @@ const CardsPersonajes=({people})=> {
 						</p>
 						<div className= "d-flex justify-content-between">
 						<button type="button" className="btn btn-dark" onClick={()=>{navigate(`descripción/personaje/${people.name}`)}}>Descripción</button>
-						<button type="button" className="btn btn-dark"><i className="bi bi-heart" style={{color:"yellow"}} ></i></button>
+						<button type="button" className="btn btn-dark" onClick={favorite}><i className="bi bi-heart" style={{color:"yellow"}} ></i></button>
 						</div>
 					</div>
 			</div>

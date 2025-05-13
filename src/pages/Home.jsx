@@ -5,6 +5,7 @@ import Vehicles from "../components/Vehicles.jsx";
 import React, {useEffect} from "react";
 
 
+
 export const Home = () => {
 
 	const { store, dispatch } = useGlobalReducer()
@@ -83,6 +84,7 @@ function cartasVehiculos(){
 				{store.character.map((value,index)=> {
 					return(
                         <CardsPersonajes key={index} people={value} />
+                        
 						
 					)
 				})}

@@ -4,6 +4,8 @@ import useGlobalReducer from "../hooks/useGlobalReducer";
 export const Navbar = () => {
 const {store, dispatch} = useGlobalReducer()
 
+
+
 	return (
 		<nav className="navbar" style={{backgroundColor: "black", width: "100%"}} >
 			<div className="container">
@@ -17,6 +19,15 @@ const {store, dispatch} = useGlobalReducer()
 							Favoritos <i className="bi bi-star" style={{color: "yellow"}}></i>
 							</button>
 							<ul className="dropdown-menu">
+								
+								{/* corregir  */}
+								{/* {store.favorites.map((value,index)=> {
+					return(
+                        <CardsPersonajes key={index} people={value} />
+                        
+						
+					)
+				})} */}
 								<li><a className="dropdown-item" href="#">Action</a></li>
 								<li><a className="dropdown-item" href="#">Another action</a></li>
 								<li><a className="dropdown-item" href="#">Something else here</a></li>
