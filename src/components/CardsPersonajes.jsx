@@ -41,7 +41,7 @@ const CardsPersonajes = ({ people }) => {
 						<button type="button" className="btn btn-dark" onClick={() => { navigate(`descripción/personaje/${people.name}`) }}>Descripción</button>
 						<button type="button" className="btn btn-dark" onClick={favorite}>
 							<i className={isFavorite ? "bi bi-heart-fill" : "bi bi-heart"}
-								style={{ color: isFavorite ? "red" : "yellow" }}
+								style={{ color: isFavorite ? "Yellow" : "white" }}
 							></i>
 						</button>
 
