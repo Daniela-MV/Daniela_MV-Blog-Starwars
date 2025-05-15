@@ -18,9 +18,9 @@ export const Home = () => {
                 data.results.map(personaje =>
                     fetch(personaje.url)
                         .then(res => res.json())
-                        .then(data => data.result.properties)
-                )
-            );
+                        .then(data => 
+                           ({...data.result.properties, uid: data.result.uid})
+                        )))
 
             dispatch({
                 type: "set_personajes",

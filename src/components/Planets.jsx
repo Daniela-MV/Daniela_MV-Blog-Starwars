@@ -2,7 +2,7 @@ import useGlobalReducer from "../hooks/useGlobalReducer";
 import { useNavigate } from "react-router-dom";
 
 const Planets=({planetas})=>{
-     const navigate=useNavigate;
+     const navigate = useNavigate();
 	 const {store, dispatch}=useGlobalReducer();
 
 	 const isFavorite = store.favorites?.some(fav => fav === planetas.name)
@@ -32,8 +32,8 @@ const Planets=({planetas})=>{
 						<h5 className="card-title">{planetas.name}</h5>
 						<p className="card-text" style={{color:"black"}}>
 							<ul>
-								<li>{planetas.population}</li>
-								<li>{planetas.terrain}</li>
+								<li><b>Población:</b> {planetas.population}</li>
+								<li><b>Terreno:</b> {planetas.terrain}</li>
 							</ul>
 						</p>
 						<div className= "d-flex justify-content-between">

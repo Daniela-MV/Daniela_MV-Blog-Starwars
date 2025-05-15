@@ -1,32 +1,32 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-const DescripcionPlanetas = () => {
-    const { id } = useParams(); 
-    const [planets, setPlanets] = useState(null);
+const DescripcionVehiculos = () => {
+    const { uid } = useParams(); 
+    const [vehicles, setVehicles] = useState(null);
 
-    function descriptionPlanets() {
-        fetch("https://www.swapi.tech/api/planets/" + id)
+    function descriptionCharacter() {
+        fetch("https://www.swapi.tech/api/people/" + uid)
             .then(response => response.json())
             .then(data => {
                 console.log(data.result.properties);
-                setPlanets(data.result.properties);
+                setCharacter(data.result.properties);
             })
             .catch(error => console.error(error));
     }
 
     useEffect(() => {
-        descriptionPlanets();
+        descriptionCharacter();
     }, [id]);
 
     return (
         <div className="ContainerPersonaje">
-            <h1 className="titulo ms-4 mt-4" style={{ color: "rgba(255, 219, 88, 1)" }}>Descripción de los Planetas</h1>
+            <h1 className="titulo ms-4 mt-4" style={{ color: "rgba(255, 219, 88, 1)" }}>Descripción del Personaje</h1>
 
             <div className="card mb-3 bg-dark" style={{ width: "100vw", height: "400px" }}>
                 <div className="row g-0">
                     <div className="col-md-4">
-                        <img src="https://media.airedesantafe.com.ar/p/2940eadd4dd2a7bf6b3cfcc8d9e9132d/adjuntos/268/imagenes/003/795/0003795433/1200x675/smart/el-planeta-que-no-deberia-existir-y-cambia-todo-lo-conocido-el-universo.png"
+                        <img src="https://cdn.zendalibros.com/wp-content/uploads/2025/01/luke-skaywalker-star-wars.jpg"
                              className="img-fluid rounded-start"
                              style={{ width: "100vw", height: "400px" }}
                              alt="Luke Skywalker" />
@@ -41,19 +41,19 @@ const DescripcionPlanetas = () => {
                             <tbody>
                                 <tr>
                                     <th scope="row">Nombre</th>
-                                    <td>{planets?.name}</td>
+                                    <td>{character?.name}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Población</th>
-                                    <td>{planets?.population}</td>
+                                    <th scope="row">Género</th>
+                                    <td>{character?.gender}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Clima</th>
-                                    <td>{planets?.climate}</td>
+                                    <th scope="row">Color de pelo</th>
+                                    <td>{character?.hair_color}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Diametro</th>
-                                    <td>{planets?.diameter}</td>
+                                    <th scope="row">Color de ojos</th>
+                                    <td>{character?.eye_color}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -64,4 +64,4 @@ const DescripcionPlanetas = () => {
     );
 };
 
-export default DescripcionPlanetas;
+export default DescripcionPersonajes;

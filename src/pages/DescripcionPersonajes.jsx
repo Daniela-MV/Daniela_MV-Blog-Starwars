@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 const DescripcionPersonajes = () => {
-    const { id } = useParams(); 
+    const { uid } = useParams(); 
     const [character, setCharacter] = useState(null);
 
     function descriptionCharacter() {
-        fetch("https://www.swapi.tech/api/people/" + id)
+        fetch("https://www.swapi.tech/api/people/" + uid)
             .then(response => response.json())
             .then(data => {
                 console.log(data.result.properties);
@@ -17,7 +17,7 @@ const DescripcionPersonajes = () => {
 
     useEffect(() => {
         descriptionCharacter();
-    }, [id]);
+    }, [uid]);
 
     return (
         <div className="ContainerPersonaje">
