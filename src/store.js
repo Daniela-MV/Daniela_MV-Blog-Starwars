@@ -35,12 +35,9 @@ export default function storeReducer(store, action = {}) {
       }
       case "newFavorite":
       const addFavorite = action.payload;
-
-      // Si ya existe, no lo agregamos otra vez
       if (store.favorites.includes(addFavorite)) {
         return store;
       }
-
       return {
         ...store,
         favorites: [...store.favorites, addFavorite]
