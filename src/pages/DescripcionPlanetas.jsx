@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 const DescripcionPlanetas = () => {
-    const { id } = useParams(); 
+    const { uid } = useParams(); 
     const [planets, setPlanets] = useState(null);
 
     function descriptionPlanets() {
-        fetch("https://www.swapi.tech/api/planets/" + id)
+        fetch("https://www.swapi.tech/api/planets/" + uid)
             .then(response => response.json())
             .then(data => {
                 console.log(data.result.properties);
@@ -17,7 +17,7 @@ const DescripcionPlanetas = () => {
 
     useEffect(() => {
         descriptionPlanets();
-    }, [id]);
+    }, [uid]);
 
     return (
         <div className="ContainerPersonaje">
@@ -54,6 +54,14 @@ const DescripcionPlanetas = () => {
                                 <tr>
                                     <th scope="row">Diametro</th>
                                     <td>{planets?.diameter}</td>
+                                </tr>
+                                 <tr>
+                                    <th scope="row">Superficie de agua</th>
+                                    <td>{planets?.surface_water}</td>
+                                </tr>
+                                 <tr>
+                                    <th scope="row">Terreno</th>
+                                    <td>{planets?.terrain}</td>
                                 </tr>
                             </tbody>
                         </table>

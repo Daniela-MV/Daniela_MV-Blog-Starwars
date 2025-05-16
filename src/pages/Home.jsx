@@ -38,9 +38,9 @@ function cartasPlanetas(){
                 data.results.map(planeta =>
                     fetch(planeta.url)
                         .then(res => res.json())
-                        .then(data => data.result.properties)
-                )
-            );
+                        .then(data => 
+                           ({...data.result.properties, uid: data.result.uid})
+                        )))
             dispatch({
                 type: "set_planetas",
                 payload: { planetas: planetasDetalles }
@@ -57,9 +57,9 @@ function cartasVehiculos(){
                 data.results.map(vehiculoStar =>
                     fetch(vehiculoStar.url)
                         .then(res => res.json())
-                        .then(data => data.result.properties)
-                )
-            );
+                        .then(data => 
+                           ({...data.result.properties, uid: data.result.uid})
+                        )))
             dispatch({
                 type: "set_vehicles",
                 payload: { vehiculos: vehiculosDetalles }
@@ -74,6 +74,7 @@ function cartasVehiculos(){
 		cartasPlanetas(),
         cartasVehiculos()
 	}, [])
+
 
 	return (
 		<div className="Container">

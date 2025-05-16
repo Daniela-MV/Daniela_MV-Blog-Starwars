@@ -37,7 +37,7 @@ const Planets=({planetas})=>{
 							</ul>
 						</p>
 						<div className= "d-flex justify-content-between">
-						<button type="button" className="btn btn-dark" onClick={() => { navigate(`/descripción/planeta/${planetas.name}`)}}>Descripción</button>
+						<button type="button" className="btn btn-dark" onClick={() => { navigate(`/descripción/planeta/${planetas.uid}`)}}>Descripción</button>
 						<button type="button" className="btn btn-dark" onClick={favorite}>
 							<i className={isFavorite ? "bi bi-heart-fill" : "bi bi-heart"}
 								style={{ color: isFavorite ? "Yellow" : "white" }}

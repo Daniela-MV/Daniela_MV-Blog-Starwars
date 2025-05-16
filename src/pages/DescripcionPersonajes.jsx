@@ -55,6 +55,14 @@ const DescripcionPersonajes = () => {
                                     <th scope="row">Color de ojos</th>
                                     <td>{character?.eye_color}</td>
                                 </tr>
+                                 <tr>
+                                    <th scope="row">Altura</th>
+                                    <td>{character?.height}</td>
+                                </tr>
+                                 <tr>
+                                    <th scope="row">Año de cumpleaños</th>
+                                    <td>{character?.birth_year}</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

@@ -5,19 +5,19 @@ const DescripcionVehiculos = () => {
     const { uid } = useParams(); 
     const [vehicles, setVehicles] = useState(null);
 
-    function descriptionCharacter() {
-        fetch("https://www.swapi.tech/api/people/" + uid)
+    function descriptionVehicles() {
+        fetch("https://www.swapi.tech/api/vehicles/" + uid)
             .then(response => response.json())
             .then(data => {
                 console.log(data.result.properties);
-                setCharacter(data.result.properties);
+                setVehicles(data.result.properties);
             })
             .catch(error => console.error(error));
     }
 
     useEffect(() => {
-        descriptionCharacter();
-    }, [id]);
+        descriptionVehicles();
+    }, [uid]);
 
     return (
         <div className="ContainerPersonaje">
@@ -26,10 +26,10 @@ const DescripcionVehiculos = () => {
             <div className="card mb-3 bg-dark" style={{ width: "100vw", height: "400px" }}>
                 <div className="row g-0">
                     <div className="col-md-4">
-                        <img src="https://cdn.zendalibros.com/wp-content/uploads/2025/01/luke-skaywalker-star-wars.jpg"
+                        <img src="https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2021/04/cazas-tie-star-wars-2299707.jpg?tf=3840x"
                              className="img-fluid rounded-start"
                              style={{ width: "100vw", height: "400px" }}
-                             alt="Luke Skywalker" />
+                             alt="Caza TIE" />
                     </div>
                     <div className="col-md-8">
                         <table className="table table-dark table-striped" style={{ height: "400px" }}>
@@ -41,19 +41,23 @@ const DescripcionVehiculos = () => {
                             <tbody>
                                 <tr>
                                     <th scope="row">Nombre</th>
-                                    <td>{character?.name}</td>
+                                    <td>{vehicles?.name}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Género</th>
-                                    <td>{character?.gender}</td>
+                                    <th scope="row">Modelo</th>
+                                    <td>{vehicles?.model}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Color de pelo</th>
-                                    <td>{character?.hair_color}</td>
+                                    <th scope="row">Manufactura</th>
+                                    <td>{vehicles?.manufacturer}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Color de ojos</th>
-                                    <td>{character?.eye_color}</td>
+                                    <th scope="row">Capacidad de Carga</th>
+                                    <td>{vehicles?.cargo_capacity}</td>
+                                </tr>
+                                 <tr>
+                                    <th scope="row">Equipo</th>
+                                    <td>{vehicles?.crew}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -64,4 +68,4 @@ const DescripcionVehiculos = () => {
     );
 };
 
-export default DescripcionPersonajes;
+export default DescripcionVehiculos;

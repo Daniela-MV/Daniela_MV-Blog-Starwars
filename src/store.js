@@ -16,7 +16,7 @@ export default function storeReducer(store, action = {}) {
     //   return {
     //     ...store,
     //     todos: store.todos.map((todo) => (todo.id === id ? { ...todo, background: color } : todo))
-    //   };
+    //   };    
 
     case "set_personajes":
       const{personaje}=action.payload
@@ -37,7 +37,7 @@ export default function storeReducer(store, action = {}) {
       const addFavorite = action.payload;
       if (store.favorites.includes(addFavorite)) {
         return store;
-      }
+      } 
       return {
         ...store,
         favorites: [...store.favorites, addFavorite]
